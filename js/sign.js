@@ -1,7 +1,18 @@
 function doRegister(){
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-
+    let email = document.getElementById('email')
+    let password = document.getElementById('password')
+    if(email.value==""){
+        alert('Vui Lòng Nhập Email')
+        return false
+    }else{
+        email = document.getElementById('email').value
+    }
+    if(password.value==""){
+        alert('Vui Lòng Nhập Password')
+        return false
+    }else{
+        password = document.getElementById('password').value
+    }
     register(email, password)
 }
 
@@ -10,9 +21,10 @@ function register(email, password){
     $.post('sign.php', params, function(data){
         let res = JSON.parse(data)
         if(res.code == true){
-            window.location = 'login.html'
+            
         }else{
-            alert('Register  Failed')
+            alert('Đăng Kí Thành Công')
+            window.location = 'login.html'
         }
     })
 }

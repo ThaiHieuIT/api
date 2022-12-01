@@ -113,7 +113,6 @@ function login($email, $password){
             'email' => $row['email'],
             'password' => $row['password']
         );
-
         return $user;
     }
     
