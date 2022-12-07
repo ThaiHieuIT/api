@@ -98,6 +98,7 @@ function get_product($product_id){
 /**
  * Authentication
  */
+//Đăng nhập
 function login($email, $password){
     $sql = 'SELECT * FROM USERS WHERE email=:email AND password=:password';
     $pdo = get_pdo();
@@ -118,7 +119,7 @@ function login($email, $password){
     
     return false;
 }
-
+//Tạo tài khoản
 function register($email, $password){
     $sql = 'INSERT INTO USERS(ID,EMAIL,PASSWORD) VALUES(NULL, :email, :password)';
     $pdo = get_pdo();
@@ -126,6 +127,36 @@ function register($email, $password){
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password', $password);
+    return $stmt->execute();
+}
+
+//add category
+function addCategory($category_id, $category_name){
+    $sql = 'INSERT INTO categories(ID,Name) VALUES(:category_id, :category_name)';
+    $pdo = get_pdo();
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':category_id', $category_id);
+    $stmt->bindParam(':category_name', $category_name);
+    return $stmt->execute();
+}
+//Xóa Category
+function deleteCategory($category_id){
+    $sql = 'DELETE FROM categories WHERE id=:category_id';
+    $pdo = get_pdo();
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':category_id', $category_id);
+    return $stmt->execute();
+}
+// Sửa Category
+function updateCategory($category_id, $category_name){
+    $sql = 'UPDATE categories SET name=:category_name where id=:category_id';
+    $pdo = get_pdo();
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':category_id', $category_id);
+    $stmt->bindParam(':category_name', $category_name);
     return $stmt->execute();
 }
 ?>
