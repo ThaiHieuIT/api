@@ -159,4 +159,19 @@ function updateCategory($category_id, $category_name){
     $stmt->bindParam(':category_name', $category_name);
     return $stmt->execute();
 }
+
+//add product
+function addProduct($product_id, $product_name, $product_description, $product_img, $product_price, $category_id){
+    $sql = 'INSERT INTO products(ID,Name,description,img,price,category_id) VALUES(:product_id, :product_name, :product_description, :product_img, :product_price, :category_id)';
+    $pdo = get_pdo();
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':product_id', $product_id);
+    $stmt->bindParam(':product_name', $product_name);
+    $stmt->bindParam(':product_description', $product_description);
+    $stmt->bindParam(':product_img', $product_img);
+    $stmt->bindParam(':product_price', $product_price);
+    $stmt->bindParam(':category_id', $category_id);
+    return $stmt->execute();
+}
 ?>
