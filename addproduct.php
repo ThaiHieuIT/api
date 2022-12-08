@@ -1,5 +1,5 @@
 <?php
-require_once '/api/core/functions.php';
+require_once './core/functions.php';
 header('Access-Control-Allow-Origin: *');
 
 $product_id = $_POST['product_id'];
